@@ -16,3 +16,13 @@ Route::get('/admin/users', function () {
     return view('admin.users.index');
 });
 
+
+Route::get('/admin/user/profile', function () {
+    return view('admin.users.profile');
+});
+
+
+
+Route::get('/admin/properties', function () {
+    return view('admin.properties.properties');
+});
