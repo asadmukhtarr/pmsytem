@@ -26,3 +26,7 @@ Route::get('/admin/user/profile', function () {
 Route::get('/admin/properties', function () {
     return view('admin.properties.properties');
 });
+
+Route::get('/admin/add-property', function () {
+    return view('admin.properties.addProperty');
+});

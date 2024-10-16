@@ -33,7 +33,7 @@
                 <span class="text-sm">Activities</span>
             </a>
         </li>
-        <span class="text-gray-400 font-bold">BLOG</span>
+        <span class="text-gray-400 font-bold">Properties</span>
         <li class="mb-1 group">
             <a href="" class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
                 <i class='bx bxl-blogger mr-3 text-lg' ></i>                 
@@ -42,10 +42,10 @@
             </a>
             <ul class="pl-7 mt-2 hidden group-[.selected]:block">
                 <li class="mb-4">
-                    <a href="" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">All</a>
+                    <a href="/admin/properties" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">All</a>
                 </li>
                 <li class="mb-4">
-                    <a href="" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Add New</a>
+                    <a href="/admin/add-property" class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3">Add New</a>
                 </li> 
                 
                 <li class="mb-4">
