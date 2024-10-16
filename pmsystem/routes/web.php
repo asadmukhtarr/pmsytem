@@ -5,28 +5,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
-
-
-Route::get('/admin/users', function () {
-    return view('admin.users.index');
-});
-
-
-Route::get('/admin/user/profile', function () {
-    return view('admin.users.profile');
-});
-
-
-
-Route::get('/admin/properties', function () {
-    return view('admin.properties.properties');
-});
-
-Route::get('/admin/add-property', function () {
-    return view('admin.properties.addProperty');
+Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function(){
+        Route::get('/', 'pagesController@dashboard')->name('admin.dashboard');
+        Route::prefix('rooms')->group(function(){
+            Route::get('create','pagesController@create_room')->name('create.room');
+            Route::get('/','pagesController@rooms')->name('all.rooms');
+        });
+        Route::get('/customers','pagesController@customers')->name('admin.customers');
 });

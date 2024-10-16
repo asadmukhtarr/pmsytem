@@ -14,3 +14,7 @@ Planing:
 		- Register Page
 		- Booking
 		- Contact
+---------------------------
+Guadlines : 
+- Folder = Namespace
+- Link   = prefix
