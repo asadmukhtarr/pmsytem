@@ -17,7 +17,8 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function(
         // user management in admins and only accesible for super admin
         Route::prefix('users')->group(function(){
             Route::get('/','users@index')->name('all.users');
-            Route::get('create','users@create')->name('create.user');
+            Route::get('create','usersController@create')->name('create.user');
+            Route::post('save','usersController@save')->name('save.user');
             Route::get('/store','users@store')->name('store.user');
             Route::get('/roles','users@rolelist')->name('role.users');
             Route::put('/roles','users@roleupdate')->name('role.update');
