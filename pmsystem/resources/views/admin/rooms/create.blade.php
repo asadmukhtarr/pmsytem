@@ -66,7 +66,7 @@
         </div>
         <div class="mb-4 col-span-2">
           <label class="block text-sm font-medium">Amenities</label>
-          <div class="flex flex-col mt-2">
+          <div class="flex flex-row mt-2 gap-3">
             <label class="flex items-center"> <input type="checkbox" name="amenities" value="pool" class="mr-2" /> Pool </label>
             <label class="flex items-center"> <input type="checkbox" name="amenities" value="gym" class="mr-2" /> Gym </label>
             <label class="flex items-center"> <input type="checkbox" name="amenities" value="parking" class="mr-2" /> Parking </label>
