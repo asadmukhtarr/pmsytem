@@ -1,5 +1,5 @@
 @include('admin.layout.header')
-    <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
+    <main class="bg-gray-200 flex-grow h-screen main md:ml-64 md:w-[calc(100%-256px)] min-h-screen overflow-auto transition-all w-full">
         @include('admin.layout.navbar')
         @include('admin.layout.sidebar')
         @if (session('success'))

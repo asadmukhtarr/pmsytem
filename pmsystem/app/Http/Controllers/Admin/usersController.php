@@ -10,6 +10,12 @@ use App\Models\User;
 class usersController extends Controller
 {
     //
+
+    public function login(){
+        return "Login";
+    }
+
+
     public function create(){
         return view('admin.users.new');
     }
@@ -36,4 +42,7 @@ class usersController extends Controller
         $user->save();
         return redirect()->back()->with('success','User Created Succesfully');
     }
+
+
+
 }
