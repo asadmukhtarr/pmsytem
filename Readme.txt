@@ -18,3 +18,9 @@ Planing:
 Guadlines : 
 - Folder = Namespace
 - Link   = prefix
+
+
+
+to run the styling and tailwind with this project please install node in your System
+and run command in the project folder
+----  npm run dev ---------

@@ -19,6 +19,12 @@ class usersController extends Controller
     public function create(){
         return view('admin.users.new');
     }
+    public function profile(){
+        return view('admin.users.profile');
+    }
+
+    
+
     // for save user ..
     public function save(Request $request){
         $request->validate([

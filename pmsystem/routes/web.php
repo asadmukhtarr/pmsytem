@@ -24,6 +24,8 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function(
         Route::prefix('users')->group(function(){
             Route::get('/','users@index')->name('all.users');
             Route::get('create','usersController@create')->name('create.user');
+            Route::get('profile','usersController@profile')->name('profile.user');
+
             Route::post('save','usersController@save')->name('save.user');
             Route::get('/store','users@store')->name('store.user');
             Route::get('/roles','users@rolelist')->name('role.users');

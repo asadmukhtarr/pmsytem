@@ -1,6 +1,5 @@
 @extends('admin.layout.index')
 @section('main-section')
-<!-- This is an example component -->
 <div class="min-w-full border-collapse block md:table">
     
 	<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
