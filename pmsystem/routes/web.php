@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.layout.index');
 });
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function(){
         Route::get('/', 'pagesController@dashboard')->name('admin.dashboard');
