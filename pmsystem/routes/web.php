@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\usersController;
 
 
+
 Route::get('/login', function(){
     return view('frontend.login');
-});
+})->name('login');
+
+// Route::get('login','usersController@login')->name('login');
 
 Route::get('/', function () {
     return view('frontend.layout.index');
