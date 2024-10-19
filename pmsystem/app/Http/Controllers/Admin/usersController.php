@@ -2,17 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class usersController extends Controller
 {
     //
 
-    public function login(){
-        return "Login";
+    public function loginView(){
+        return view('frontend.login');
+    }
+
+    public function login(Request $request){
+        $credetials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+        if (Auth::attempt($credetials)) {
+            return redirect('/home')->with('success', 'Login berhasil');
+        }
+        return back()->with('error', 'Email or Password salah');
+        
     }
 
 

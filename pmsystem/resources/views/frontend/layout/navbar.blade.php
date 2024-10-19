@@ -7,17 +7,17 @@
         <span class="ml-3 text-xl">RoomBank</span>
       </a>
       <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-        <a class="mr-5 hover:text-gray-900">Home</a>
+        <a href="{{ route('home') }}" class="mr-5 hover:text-gray-900">Home</a>
         <a class="mr-5 hover:text-gray-900">About</a>
         <a class="mr-5 hover:text-gray-900">Properties</a>
         <a class="mr-5 hover:text-gray-900">Services</a>
         <a class="mr-5 hover:text-gray-900">Contact</a>
       </nav>
       @guest
-      <a class="inline-flex items-center bg-red-400 border-0 py-1 px-3 focus:outline-none hover:bg-green-700 rounded text-white mt-4 md:mt-0 ml-2">Register</a>
+      <a href="{{ route('login') }}" class="inline-flex items-center bg-red-400 border-0 py-1 px-3 focus:outline-none hover:bg-green-700 rounded text-white mt-4 md:mt-0 ml-2">Login</a>
       @endguest
       @auth
-      <a class="inline-flex items-center bg-blue-400 border-0 py-1 px-3 focus:outline-none hover:bg-green-700 rounded text-white mt-4 md:mt-0 ml-2">Dashboard
+      <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center bg-blue-400 border-0 py-1 px-3 focus:outline-none hover:bg-green-700 rounded text-white mt-4 md:mt-0 ml-2">Dashboard
       </a>
       @endauth
     </div>

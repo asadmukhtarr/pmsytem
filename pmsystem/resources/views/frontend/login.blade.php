@@ -14,10 +14,16 @@
 
 </head>
 <body>
+  @if(Session::has('error'))
+    <div class="alert alert-danger" role="alert">
+    {{ Session::get('error') }}
+    </div>
+  @endif
     <div class="flex items-center justify-center min-h-screen bg-gray-200">
         <div class="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-lg">
           <h2 class="text-2xl font-bold text-center">Sign In</h2>
-          <form class="space-y-4">
+          <form class="space-y-4" action="{{ route('login') }}" method="POST">
+            @csrf
             <div>
               <label for="email" class="block text-sm font-medium text-muted-foreground">Email Address</label>
               <input

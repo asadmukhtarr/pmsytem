@@ -4,16 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\usersController;
 
 
+Route::get('/login', [UsersController::class, 'loginView'])->name('login');
+Route::post('/login', [UsersController::class, 'login'])->name('login');
 
-Route::get('/login', function(){
-    return view('frontend.login');
-})->name('login');
 
-// Route::get('login','usersController@login')->name('login');
+
 
 Route::get('/', function () {
-    return view('frontend.layout.index');
-});
+    return view('frontend.pages.home');
+})->name('home');
+
+
+
+
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function(){
         Route::get('/', 'pagesController@dashboard')->name('admin.dashboard');
         // rooms in admin
@@ -28,7 +31,6 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function(
             Route::get('/','users@index')->name('all.users');
             Route::get('create','usersController@create')->name('create.user');
             Route::get('profile','usersController@profile')->name('profile.user');
-
             Route::post('save','usersController@save')->name('save.user');
             Route::get('/store','users@store')->name('store.user');
             Route::get('/roles','users@rolelist')->name('role.users');
