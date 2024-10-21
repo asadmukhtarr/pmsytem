@@ -125,10 +125,12 @@
             type="email"
             id="email"
             name="email"
-            required
             class="w-full px-3 py-2 mt-1 border rounded-md bg-input text-foreground border-border focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="you@example.com"
           />
+          @error('name')
+          <label for=""><b>{{ $message }}</b></label>
+          @enderror
         </div>
         <div>
           <label for="password" class="block text-sm font-medium text-muted-foreground">Password</label>
@@ -136,10 +138,12 @@
             type="password"
             id="password"
             name="password"
-            required
             class="w-full px-3 py-2 mt-1 border rounded-md bg-input text-foreground border-border focus:outline-none focus:ring-2 focus:ring-primary"
             placeholder="••••••••"
           />
+          @error('password')
+          <label for=""><b>{{ $message }}</b></label>
+          @enderror
         </div>
         <button type="submit" class="w-full py-2 mt-4 text-white bg-black rounded-md hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary">Sign In</button>
       </form>

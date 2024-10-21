@@ -18,11 +18,12 @@ Route::get('/', function () {
 
 
 
-Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function(){
+Route::prefix('admin')->middleware('auth')->namespace('App\Http\Controllers\Admin')->group(function(){
         Route::get('/', 'pagesController@dashboard')->name('admin.dashboard');
         // rooms in admin
         Route::prefix('rooms')->group(function(){
             Route::get('create','pagesController@create_room')->name('create.room');
+            Route::post('/save','roomController@create_room')->name('save.room');
             Route::get('/','pagesController@rooms')->name('all.rooms');
         });
         Route::get('/customers','pagesController@customers')->name('admin.customers');

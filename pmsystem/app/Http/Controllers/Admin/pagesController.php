@@ -22,4 +22,5 @@ class pagesController extends Controller
     public function customers(){
         return view('admin.customers');
     }
+    // create room ..
 }

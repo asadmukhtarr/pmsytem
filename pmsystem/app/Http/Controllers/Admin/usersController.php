@@ -17,14 +17,19 @@ class usersController extends Controller
     }
 
     public function login(Request $request){
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
         $credetials = [
             'email' => $request->email,
             'password' => $request->password,
         ];
         if (Auth::attempt($credetials)) {
-            return redirect(route('admin.dashboard'))->with('success', 'Login as ' . Auth::user()->name  );
+            //return "okay";
+            return redirect(route('admin.dashboard'));
         }
-        return back()->with('error', 'Email or Password');
         
     }
 
