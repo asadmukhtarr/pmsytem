@@ -22,12 +22,16 @@ class usersController extends Controller
             'password' => $request->password,
         ];
         if (Auth::attempt($credetials)) {
-            return redirect('/home')->with('success', 'Login berhasil');
+            return redirect(route('admin.dashboard'))->with('success', 'Login as ' . Auth::user()->name  );
         }
-        return back()->with('error', 'Email or Password salah');
+        return back()->with('error', 'Email or Password');
         
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('home');
+    }
 
     public function create(){
         return view('admin.users.new');

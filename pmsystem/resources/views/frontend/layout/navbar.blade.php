@@ -14,7 +14,7 @@
         <a class="mr-5 hover:text-gray-900">Contact</a>
       </nav>
       @guest
-      <a href="{{ route('login') }}" class="inline-flex items-center bg-red-400 border-0 py-1 px-3 focus:outline-none hover:bg-green-700 rounded text-white mt-4 md:mt-0 ml-2">Login</a>
+      <button class="inline-flex items-center bg-red-400 border-0 py-1 px-3 focus:outline-none hover:bg-green-700 rounded text-white mt-4 md:mt-0 ml-2" id="login-btn">Login</button>
       @endguest
       @auth
       <a href="{{ route('admin.dashboard') }}" class="inline-flex items-center bg-blue-400 border-0 py-1 px-3 focus:outline-none hover:bg-green-700 rounded text-white mt-4 md:mt-0 ml-2">Dashboard

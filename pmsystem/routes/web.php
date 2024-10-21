@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\usersController;
 
 Route::get('/login', [UsersController::class, 'loginView'])->name('login');
 Route::post('/login', [UsersController::class, 'login'])->name('login');
+Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
 
 
 

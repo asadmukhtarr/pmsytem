@@ -154,7 +154,7 @@
                     </div>
                 </div>
                 <div class="p-2 md:block text-left">
-                    <h2 class="text-sm font-semibold text-gray-800">John Doe</h2>
+                    <h2 class="text-sm font-semibold text-gray-800">{{ Auth::user()->name }}</h2>
                     <p class="text-xs text-gray-500">Administrator</p>
                 </div>                
             </button>
@@ -166,13 +166,9 @@
                     <a href="#" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Settings</a>
                 </li>
                 <li>
-                    <form method="POST" action="">
-                        <a role="menuitem" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer"
-                            onclick="event.preventDefault();
-                            this.closest('form').submit();">
+                        <a href="{{ route('logout') }}" role="menuitem" class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer">
                             Log Out
                         </a>
-                    </form>
                 </li>
             </ul>
         </li>

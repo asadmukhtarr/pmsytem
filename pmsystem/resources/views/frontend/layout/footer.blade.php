@@ -112,5 +112,53 @@
       </div>
     </div>
   </footer>
+  <div class="hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center h-full w-full" id="login-popup">
+    <div class="bg-black opacity-70 h-full w-full block absolute top-0"></div>
+    <div class="w-full relative max-w-md p-8 space-y-6 bg-white shadow-lg rounded-lg z-10">
+      <i class='bx bx-x w-7 h-7 text-center text-xl bg-black text-white rounded-full absolute -top-3 -right-3 cursor-pointer' id="close-btn"></i>
+      <h2 class="text-2xl font-bold text-center">Sign In</h2>
+      <form class="space-y-4" action="{{ route('login') }}" method="POST">
+        @csrf
+        <div>
+          <label for="email" class="block text-sm font-medium text-muted-foreground">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-3 py-2 mt-1 border rounded-md bg-input text-foreground border-border focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="you@example.com"
+          />
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-muted-foreground">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            class="w-full px-3 py-2 mt-1 border rounded-md bg-input text-foreground border-border focus:outline-none focus:ring-2 focus:ring-primary"
+            placeholder="••••••••"
+          />
+        </div>
+        <button type="submit" class="w-full py-2 mt-4 text-white bg-black rounded-md hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary">Sign In</button>
+      </form>
+      <div class="flex justify-between mt-4 text-sm text-muted-foreground">
+        <a href="#" class="hover:underline">Forgot Password?</a>
+        <a href="#" class="hover:underline">Create a New Account</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('login-btn').addEventListener('click', function() {
+      document.getElementById('login-popup').style.display = 'flex';
+    });
+
+    
+    document.getElementById('close-btn').addEventListener('click', function() {
+      document.getElementById('login-popup').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
