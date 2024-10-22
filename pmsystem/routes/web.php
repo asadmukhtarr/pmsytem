@@ -30,14 +30,18 @@ Route::prefix('admin')->middleware('auth')->namespace('App\Http\Controllers\Admi
 
         // user management in admins and only accesible for super admin
         Route::prefix('users')->group(function(){
-            Route::get('/','users@index')->name('all.users');
+
+            // users 
+            Route::get('/','usersController@index')->name('all.users');
             Route::get('create','usersController@create')->name('create.user');
             Route::get('profile','usersController@profile')->name('profile.user');
             Route::post('save','usersController@save')->name('save.user');
             Route::get('/store','users@store')->name('store.user');
+
             // Roles 
             Route::get('/roles','usersController@rolelist')->name('role.users');
             Route::post('/roles','usersController@rolesave')->name('role.save');
+            
             // Permissions 
             Route::get('/permission','usersController@permissionlist')->name('permission.list');
             Route::post('/permission','usersController@permissionsave')->name('permission.save');

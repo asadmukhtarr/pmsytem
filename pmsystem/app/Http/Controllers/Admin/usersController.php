@@ -40,6 +40,9 @@ class usersController extends Controller
         return redirect()->route('home');
     }
 
+    public function index(){
+        return view('admin.users.users');
+    }
     public function create(){
         return view('admin.users.new');
     }
