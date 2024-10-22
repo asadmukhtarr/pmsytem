@@ -35,13 +35,13 @@ Route::prefix('admin')->middleware('auth')->namespace('App\Http\Controllers\Admi
             Route::get('profile','usersController@profile')->name('profile.user');
             Route::post('save','usersController@save')->name('save.user');
             Route::get('/store','users@store')->name('store.user');
-            Route::get('/roles','users@rolelist')->name('role.users');
-            Route::put('/roles','users@roleupdate')->name('role.update');
+            // Roles 
+            Route::get('/roles','usersController@rolelist')->name('role.users');
+            Route::post('/roles','usersController@rolesave')->name('role.save');
             // Permissions 
             Route::get('/permission','usersController@permissionlist')->name('permission.list');
             Route::post('/permission','usersController@permissionsave')->name('permission.save');
             Route::delete('/permission/{id}','usersController@permissiondelete')->name('permission.delete');
-            Route::put('/permission','usersController@permissionupdate')->name('permission.update');
         });
 
         Route::prefix('bookings')->group(function(){

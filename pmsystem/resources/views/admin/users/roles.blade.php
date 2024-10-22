@@ -10,14 +10,15 @@
                 
             </tr>
         </div>
-        <tbody class="bg-white text-gray-500 bg-[#FFFFFF] text-[#6b7280]" style="background-color: #FFFFFF; color: #6b7280;">
+        <tbody class="bg-white text-gray-500">
             <tr class="py-3">
-                <form action="" method="">
+                <form action="{{ route('role.save') }}" method="post">
+                    @csrf
                 <td class="py-3 border text-center  p-4" >
-                    <input class="w-full px-4 py-2 text-lg font-med rounded-lg border focus:outline focus:outline-2 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Role..">
+                    <input name="role_title" class="w-full px-4 py-2 text-lg font-med rounded-lg border focus:outline focus:outline-2 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Permission Title">
                 </td>
                 <td class="py-3 border text-center  p-4" >
-                    <input class="w-full px-4 py-2 text-lg font-med rounded-lg border focus:outline focus:outline-2 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Role Description..">
+                    <input name="role_description" class="w-full px-4 py-2 text-lg font-med rounded-lg border focus:outline focus:outline-2 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Permission Slug">
                 </td>
                 
                 <td class="py-3 border text-center  p-4">
@@ -33,34 +34,25 @@
     <table class="table-fixed w-full text-left">
         <thead class="uppercase bg-[#6b7280] text-[#e5e7eb]" style="background-color: #6b7280; color: #e5e7eb;">
             <tr>
-                <td class="py-2 border text-center font-bold p-4">ROles Name</td>
+                <td class="py-2 border text-center font-bold p-4">Role</td>
                 <td class="py-2 border text-center font-bold p-4">Description</td>
-                <td class="py-2 border text-center font-bold p-4">Assigned to Users</td>
                 <td class="py-2 border text-center font-bold p-4">Action</td>
             </tr>
         </thead>
-        <tbody class="bg-white text-gray-500 bg-[#FFFFFF] text-[#6b7280]" style="background-color: #FFFFFF; color: #6b7280;">
+        <tbody class="bg-white text-gray-500">
+            @foreach($roles as $role)
             <tr class="py-3">
-                <td class="py-3 border text-center  p-4">Admin</td>
-                <td class="py-3 border text-center  p-4">This is Admin Role</td>
-                <td class="py-3 border text-center  p-4">2 users</td>
+                <td class="py-3 border text-center  p-4">{{ $role->role_title }}</td>
+                <td class="py-3 border text-center  p-4">{{ $role->role_description }}</td>
                 <td class="py-3 border text-center  p-4">
-                    <form action="" method="">
-                        <input type="hidden" name="" id="">
+                    <form action="{{ route('permission.delete', $role->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
                         <button class="text-red-500">Delete</button>
 
                 </td>
             </tr>
-            <tr class="py-3">
-                <td class="py-3 border text-center  p-4">Manager</td>
-                <td class="py-3 border text-center  p-4">Role for manager</td>
-                <td class="py-3 border text-center  p-4">5 users</td>
-                <td class="py-3 border text-center  p-4">
-                    <form action="" method="">
-                        <input type="hidden" name="" id="">
-                        <button class="text-red-500">Delete</button>
-                </td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

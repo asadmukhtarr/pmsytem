@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -73,6 +74,7 @@ class usersController extends Controller
     }
 
 
+    // Permissions 
     public function permissionlist(){
         $permissions = Permission::all();
         return view('admin.users.permissions', compact('permissions'));
@@ -91,13 +93,30 @@ class usersController extends Controller
         return redirect()->back()->with('success','Permission Created Succesfully');
 
     }
-    public function permissionupdate(){
-        return "hello";
-    }
     public function permissiondelete($id) {
         $permission = Permission::findOrFail($id);
         $permission->delete();
         return redirect()->back()->with('success', 'Permission deleted successfully');
+    }
+
+
+    // Roles 
+    public function rolelist(){
+        $roles = Role::all();
+        return view('admin.users.roles', compact('roles'));
+    }
+    public function rolesave( Request $request ){
+        $request->validate([
+            'role_title' => 'required|string|max:255',
+            'role_description' => 'max:255',
+        ]);
+        
+        $roles = new Role;
+        $roles->role_title = $request->role_title;
+        $roles->role_description = $request->role_description;
+        $roles->save();
+        return redirect()->back()->with('success','Role Created Succesfully');
+
     }
 
 }
