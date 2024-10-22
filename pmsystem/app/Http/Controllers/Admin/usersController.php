@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -72,5 +73,31 @@ class usersController extends Controller
     }
 
 
+    public function permissionlist(){
+        $permissions = Permission::all();
+        return view('admin.users.permissions', compact('permissions'));
+    }
+
+    public function permissionsave( Request $request ){
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'permission_slug' => 'required|string|unique:permissions,permission_slug|max:255',
+        ]);
+        
+        $permission = new Permission;
+        $permission->title = $request->title;
+        $permission->permission_slug = $request->permission_slug;
+        $permission->save();
+        return redirect()->back()->with('success','Permission Created Succesfully');
+
+    }
+    public function permissionupdate(){
+        return "hello";
+    }
+    public function permissiondelete($id) {
+        $permission = Permission::findOrFail($id);
+        $permission->delete();
+        return redirect()->back()->with('success', 'Permission deleted successfully');
+    }
 
 }
