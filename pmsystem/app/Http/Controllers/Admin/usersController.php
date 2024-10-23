@@ -81,18 +81,12 @@ class usersController extends Controller
         return redirect()->back()->with('success','User Created Succesfully');
     }
     // for update user
-    public function updateUser(Request $request, User $user)
+    public function updateUser($id, Request $request)
     {
         // Validation rules for updating the user
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => [
-            'required',
-            'string',
-            'email',
-            'max:255',
-            Rule::unique('users')->ignore($user->id),
-        ],
+            'email' => 'required',
             'gender' => 'required|in:male,female,other',
             'role' => 'required|in:admin,manager,listings',
             'password' => 'nullable|string|min:6|confirmed',
@@ -106,17 +100,18 @@ class usersController extends Controller
             $image = "Asad".time().".".$request->image->getClientOriginalExtension();
             $request->image->storeAs('users',$image,'public');
         }
+        $user = user::find($id);
         // Updating user data
         $user->name = $request->name;
         $user->email = $request->email;
         $user->gender = $request->gender;
-        $user->role = $request->role;
+      //  $user->role = $request->role;
 
-        if ($request->password) {
+        if (!empty($request->password)) {
             $user->password = Hash::make($request->password);
         }
         $user->save();
-        return redirect()->route('admin.users')->with('success', 'User updated successfully');
+        return redirect()->back()->with('success', 'User updated successfully');
     }
 
     public function useredit($id) {
