@@ -32,11 +32,14 @@ Route::prefix('admin')->middleware('auth')->namespace('App\Http\Controllers\Admi
         Route::prefix('users')->group(function(){
 
             // users 
-            Route::get('/','usersController@index')->name('all.users');
-            Route::get('create','usersController@create')->name('create.user');
-            Route::get('profile','usersController@profile')->name('profile.user');
-            Route::post('save','usersController@save')->name('save.user');
-            Route::get('/store','users@store')->name('store.user');
+            Route::get('/','usersController@index')->name('all.users'); // list
+            Route::get('create','usersController@create')->name('create.user'); //add new
+            Route::get('profile','usersController@profile')->name('profile.user'); // profile
+            Route::post('save','usersController@save')->name('save.user');  // to create new
+            Route::put('update/{id}','usersController@updateUser')->name('update.user');  // to Update User
+
+            Route::get('/{id}','usersController@useredit')->name('user.edit'); // open edit page
+            Route::delete('/{id}','usersController@userdelete')->name('user.delete'); // delete
 
             // Roles 
             Route::get('/roles','usersController@rolelist')->name('role.users');
