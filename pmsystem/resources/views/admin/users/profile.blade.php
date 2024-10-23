@@ -3,8 +3,8 @@
 <div class="flex flex-col md:flex-row p-6">
     <div class="w-full md:w-1/3 bg-[#f8f4f3]  p-4 rounded-lg shadow-md">
       <div class="flex flex-col items-center justify-center">
-        <img src="https://placehold.co/100x100" alt="Profile Picture" class="rounded-full mb-4" />
-        <h2 class="text-lg font-semibold">Nina Mcintire</h2>
+        <img src="@if(!empty(Auth::user()->picture)) {{ asset('storage/users/') }}/{{ Auth::user()->picture }}  @else https://placehold.co/100x100 @endif" alt="Profile Picture" class="rounded-full mb-4" />
+        <h2 class="text-lg font-semibold">{{ Auth::user()->picture }}</h2>
         <p class="text-muted-foreground">Software Engineer</p>
         <p class="text-muted-foreground">Brief description about Nina.</p>
       </div>

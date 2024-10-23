@@ -23,6 +23,7 @@ Route::prefix('admin')->middleware('auth')->namespace('App\Http\Controllers\Admi
         // rooms in admin
         Route::prefix('rooms')->group(function(){
             Route::get('create','pagesController@create_room')->name('create.room');
+            Route::get('edit/{id}','pagesController@edit')->name('edit.room');
             Route::post('/save','roomController@create_room')->name('save.room');
             Route::get('/','pagesController@rooms')->name('all.rooms');
         });

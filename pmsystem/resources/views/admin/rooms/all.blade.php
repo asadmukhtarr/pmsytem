@@ -45,54 +45,31 @@
 				</tr>
 			</thead>
 			<tbody>
+				@foreach($properties as $property)
 				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 					<td class="w-4 p-4">
 						<div class="flex items-center">
-							<input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-							<label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+							<img src="{{ asset('storage/Images/') }}/{{ $property->image }}" class="rounded-full size-5"  alt="">
 						</div>
 					</td>
 					<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-						Example Property 1
+						{{ $property->title }}
 					</th>
 					<td class="px-6 py-4">
-						$500,000
+						{{ $property->price }} PKR
 					</td>
 					<td class="px-6 py-4">
-						New York
+						{{ $property->city }}
 					</td>
 					<td class="px-6 py-4">
 						For Sale
 					</td>
 					<td class="px-6 py-4 text-right">
-						<a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+						<a href="{{ route('edit.room', $property->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
 						<a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline ml-4">Delete</a>
 					</td>
 				</tr>
-				<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-					<td class="w-4 p-4">
-						<div class="flex items-center">
-							<input id="checkbox-table-search-2" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-							<label for="checkbox-table-search-2" class="sr-only">checkbox</label>
-						</div>
-					</td>
-					<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-						Example Property 2
-					</th>
-					<td class="px-6 py-4">
-						$750,000
-					</td>
-					<td class="px-6 py-4">
-						Los Angeles
-					</td>
-					<td class="px-6 py-4">
-						For Rent
-					</td>
-					<td class="px-6 py-4 text-right">
-						<a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-						<a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline ml-4">Delete</a>
-					</td>
-				</tr>
+				@endforeach
 			</tbody>
 		</table>
 	</div>

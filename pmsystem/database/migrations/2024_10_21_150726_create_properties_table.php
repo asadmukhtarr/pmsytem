@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->integer('is_feature')->nullable();
             $table->text('amenities')->nullable();
+            $table->integer('status')->defualt(0);
             $table->timestamps();
         });
     }

@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\property;
+use App\Models\gallery;
 
 class roomController extends Controller
 {
     //
     public function create_room(Request $request){
+        //return sizeof($request->imageg);
+      
         $validatedData = $request->validate([
             'name' => 'required',
             'type' => 'required',
@@ -19,12 +22,6 @@ class roomController extends Controller
             'image' => 'required',
         ]);
         // Validate the request
-
-    // Handle image upload
-    // $imagePath = null;
-    // if ($request->hasFile('image')) {
-    //     $imagePath = $request->file('image')->store('images', 'public');
-    // }
 
     if($request->hasFile('image')){
         $image = "property".time().".".$request->image->getClientOriginalExtension();
@@ -45,8 +42,18 @@ class roomController extends Controller
 
     // Save the property to the database
     $property->save();
+    $property_id = $property->id;
 
-
+    $gallery = $request->imageg;
+    foreach ($gallery as $image) {
+        $imageName = "property" . time() . "." . $image->getClientOriginalExtension();
+        $image->storeAs('public/Images', $imageName);
+        
+        $galleryEntry = new gallery();
+        $galleryEntry->property_id = $property_id;
+        $galleryEntry->picture = $imageName;
+        $galleryEntry->save();
+    }
     // Redirect with a success message
     return redirect()->back()->with('success', 'Property listed successfully!');
     }

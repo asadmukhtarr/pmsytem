@@ -3,7 +3,7 @@
 <!-- This is an example component -->
 <div class="bg-background text-black flex flex-col items-center justify-center">
     <div class="bg-[#f8f4f3] w-full p-8 m-2 rounded-lg shadow-lg">
-      <h2 class="text-2xl font-bold mb-4">List Your Property</h2>
+      <h2 class="text-2xl font-bold mb-4">Edit Your Property</h2>
       <form action="{{ route('save.room') }}" method="post" enctype="multipart/form-data" class="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
         @csrf
         <div class="mb-4">
@@ -12,6 +12,7 @@
             type="text"
             id="property-name"
             name="name"
+            value="{{ $room->title }}"
             placeholder="Enter property name"
             class="w-full mt-1 p-2 border border-input rounded-md focus:outline-none focus:ring focus:ring-primary"
           />

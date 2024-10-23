@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\property;
 
 class pagesController extends Controller
 {
@@ -15,8 +16,13 @@ class pagesController extends Controller
     public function create_room(){
         return view('admin.rooms.create');
     }
+    public function edit($id){
+        $room = property::find($id);
+        return view('admin.rooms.edit',compact('room'));
+    }
     public function rooms(){
-        return view('admin.rooms.all');
+        $properties = property::all();
+        return view('admin.rooms.all',compact('properties'));
     }
     // customers ..
     public function customers(){
