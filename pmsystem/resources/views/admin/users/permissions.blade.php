@@ -49,7 +49,7 @@
                         @csrf
                         @method('DELETE')
                         <button class="text-red-500">Delete</button>
-
+                    </form>
                 </td>
             </tr>
             @endforeach

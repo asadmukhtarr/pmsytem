@@ -15,10 +15,10 @@
                 <form action="{{ route('role.save') }}" method="post">
                     @csrf
                 <td class="py-3 border text-center  p-4" >
-                    <input name="role_title" class="w-full px-4 py-2 text-lg font-med rounded-lg border focus:outline focus:outline-2 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Permission Title">
+                    <input name="role_title" class="w-full px-4 py-2 text-lg font-med rounded-lg border focus:outline focus:outline-2 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Role Title">
                 </td>
                 <td class="py-3 border text-center  p-4" >
-                    <input name="role_description" class="w-full px-4 py-2 text-lg font-med rounded-lg border focus:outline focus:outline-2 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Permission Slug">
+                    <input name="role_description" class="w-full px-4 py-2 text-lg font-med rounded-lg border focus:outline focus:outline-2 focus:outline-offset-2 bg-[#ffffff] text-[#444444] focus:outline-[#aaaaaa] border-[#cccccc]" placeholder="Role Description">
                 </td>
                 
                 <td class="py-3 border text-center  p-4">
@@ -45,11 +45,11 @@
                 <td class="py-3 border text-center  p-4">{{ $role->role_title }}</td>
                 <td class="py-3 border text-center  p-4">{{ $role->role_description }}</td>
                 <td class="py-3 border text-center  p-4">
-                    <form action="{{ route('permission.delete', $role->id) }}" method="post">
+                    <form action="{{ route('role.delete', $role->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button class="text-red-500">Delete</button>
-
+                    </form>
                 </td>
             </tr>
             @endforeach

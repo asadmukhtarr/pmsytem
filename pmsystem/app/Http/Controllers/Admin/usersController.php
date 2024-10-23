@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Permission;
-use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 
 class usersController extends Controller
 {
@@ -41,7 +44,9 @@ class usersController extends Controller
     }
 
     public function index(){
-        return view('admin.users.users');
+        $users = User::all();
+        return view('admin.users.users', compact('users'));
+        // return view('admin.users.users');
     }
     public function create(){
         return view('admin.users.new');
@@ -74,6 +79,55 @@ class usersController extends Controller
         $user->picture = $image;
         $user->save();
         return redirect()->back()->with('success','User Created Succesfully');
+    }
+    // for update user
+    public function updateUser(Request $request, User $user)
+    {
+        // Validation rules for updating the user
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => [
+            'required',
+            'string',
+            'email',
+            'max:255',
+            Rule::unique('users')->ignore($user->id),
+        ],
+            'gender' => 'required|in:male,female,other',
+            'role' => 'required|in:admin,manager,listings',
+            'password' => 'nullable|string|min:6|confirmed',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        // Handle image upload if present
+        if($request->hasFile('image')){
+            $image = "Asad".time().".".$request->image->getClientOriginalExtension();
+            $request->image->storeAs('users',$image,'public');
+        }
+        // Updating user data
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->role = $request->role;
+
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+        return redirect()->route('admin.users')->with('success', 'User updated successfully');
+    }
+
+    public function useredit($id) {
+        $user = User::findOrFail($id);
+        return view('admin.users.new', compact('user'));
+    }
+
+    public function userdelete($id) {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully');
     }
 
 
@@ -108,6 +162,7 @@ class usersController extends Controller
         $roles = Role::all();
         return view('admin.users.roles', compact('roles'));
     }
+
     public function rolesave( Request $request ){
         $request->validate([
             'role_title' => 'required|string|max:255',
@@ -119,7 +174,12 @@ class usersController extends Controller
         $roles->role_description = $request->role_description;
         $roles->save();
         return redirect()->back()->with('success','Role Created Succesfully');
-
+    }
+    
+    public function roledelete($id) {
+        $role = Role::findOrFail($id);
+        $role->delete();
+        return redirect()->back()->with('success', 'Role deleted successfully');
     }
 
 }
