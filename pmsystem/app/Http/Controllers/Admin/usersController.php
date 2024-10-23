@@ -108,6 +108,7 @@ class usersController extends Controller
         $roles = Role::all();
         return view('admin.users.roles', compact('roles'));
     }
+
     public function rolesave( Request $request ){
         $request->validate([
             'role_title' => 'required|string|max:255',
@@ -119,7 +120,12 @@ class usersController extends Controller
         $roles->role_description = $request->role_description;
         $roles->save();
         return redirect()->back()->with('success','Role Created Succesfully');
-
+    }
+    
+    public function roledelete($id) {
+        $role = Role::findOrFail($id);
+        $role->delete();
+        return redirect()->back()->with('success', 'Role deleted successfully');
     }
 
 }

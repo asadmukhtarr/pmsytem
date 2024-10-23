@@ -41,7 +41,8 @@ Route::prefix('admin')->middleware('auth')->namespace('App\Http\Controllers\Admi
             // Roles 
             Route::get('/roles','usersController@rolelist')->name('role.users');
             Route::post('/roles','usersController@rolesave')->name('role.save');
-            
+            Route::delete('/roles/{id}','usersController@roledelete')->name('role.delete');
+
             // Permissions 
             Route::get('/permission','usersController@permissionlist')->name('permission.list');
             Route::post('/permission','usersController@permissionsave')->name('permission.save');
