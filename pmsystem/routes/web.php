@@ -29,6 +29,7 @@ Route::prefix('admin')->middleware('auth')->namespace('App\Http\Controllers\Admi
             Route::get('/','pagesController@rooms')->name('all.rooms');
         });
         Route::get('/customers','pagesController@customers')->name('admin.customers');
+        Route::post('/customer/save','pagesController@save_customer')->name('create.customer');
 
         // user management in admins and only accesible for super admin
         Route::prefix('users')->group(function(){

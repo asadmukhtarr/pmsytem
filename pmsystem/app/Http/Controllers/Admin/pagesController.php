@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\property;
+use App\Models\customer;
 
 class pagesController extends Controller
 {
@@ -26,7 +27,18 @@ class pagesController extends Controller
     }
     // customers ..
     public function customers(){
-        return view('admin.customers');
+        $customers = customer::orderby('id','desc')->get();
+        return view('admin.customers',compact('customers'));
     }
     // create room ..
+    public function save_customer(Request $request){
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:customers',
+            'whatsapp' => 'required|unique:customers|max:11',
+            'city' => 'required'
+        ]);
+        $customer = customer::create($request->all());
+        return redirect()->back()->with('success','Customer Created Succesfully');
+    }
 }
